@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        body {
+            font-size: 1em;
+            word-wrap: break-word;
+        }
+
+        .test1 {
+            font-size: 1em;
+            padding: 1em;
+            border: 5px solid #aaa;
+        }
+
+        .test2 {
+            display: inline-block;
+            vertical-align: 30px;
+        }
+
+        .test3 {
+            display: inline-block;
+            vertical-align: initial;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="test1">
+    <span style="vertical-align: 50px">啊啊 x</span>
+    <span class="test2">x</span>
+    <span class="test3">y</span>
+    <span>y</span>
+</div>
+xxsdfds
+
+
+<script>
+  var test1 = document.querySelector('.test1')
+  /*var height1 = test1.clientHeight
+   var height2 = test1.scrollHeight
+   var height3 = test1.offsetHeight*/
+
+  let t = test1.getBoundingClientRect()
+  console.log(t)
+</script>
+</body>
+</html>

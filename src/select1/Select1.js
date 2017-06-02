@@ -138,7 +138,7 @@ class Select1 extends Component {
 
   componentWillReceiveProps(nextProps) {
     let nextValue = nextProps.value + ''
-    if (nextValue !== this.props.value) {
+    if (nextValue !== this.state.value) {
       this.setState({value: nextValue})
     }
   }
