@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <style media="screen">
+        html, body, ul, h6, li {
+            /*background-color: black;*/
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        .wuyewrap {
+
+            margin-top: 200px;
+            background-color: #aaa;
+            border: 1px solid blue;
+            height: 100%;
+            width: 100%;
+        }
+
+        .newsbox {
+            width: 100%;
+            height: 480px;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .newsbox li {
+            position: absolute;
+            border: 1px solid red;
+            left: 0;
+            height: 480px;
+            width: 1000px;
+            z-index: 2;
+        }
+
+        /*第一个层*/
+        .newsbox li:nth-of-type(1) {
+            transform: translateX(120px);
+            background-color: yellow;
+            z-index: 99;
+        }
+
+        /*第二层*/
+        .newsbox li:nth-of-type(2) {
+            /*transition:.1s;*/
+            transform: translateX(-60px) scale(.8);
+            background-color: green;
+        }
+
+        .newsbox li:nth-of-type(3) {
+            transform: translateX(300px) scale(.8);
+            background-color: green;
+        }
+
+        /*第三层*/
+        .newsbox li:nth-of-type(4) {
+            /*transition:.05s;*/
+            transform: translateX(120px) scale(.6);
+            background-color: red;
+            z-index: 1;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+      var html = document.getElementsByTagName("html")[0]
+      var pixclPatio = 1 / window.devicePixelRatio
+      document.write('<meta name="viewport" content="width=device-width,initial-scale=' + pixclPatio + ',minimum-scale=' + pixclPatio + ',maximum-scale=' + pixclPatio + ',user-scalable=no" />')
+      var html = document.getElementsByTagName('html')[0]
+      var pageWidth = html.getBoundingClientRect().width
+      html.style.fontSize = pageWidth / 10 + 'px'
+    </script>
+</head>
+<body>
+<section class="wuyewrap">
+    <div class="activity">
+        <!-- <h6>社区活动</h6> -->
+        <ul class="newsbox">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- <div class="public">
+      <h6>社区公告</h6>
+      <ul class="newsbox">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+      </ul>
+    </div> -->
+</section>
+<script type="text/javascript">
+  var oNews = document.querySelector('.newsbox')
+  var aNcont = oNews.getElementsByTagName('li')
+  var ifMove = false
+  var La = 0, Lb = 1, Lc = 2, Ld = 3
+  // var onOffFn = false;
+
+  turnToNext(0, 1, 2, 3)
+
+  function turnToNext(Na, Nb, Nc, Nd) {
+
+    console.log(Na, Nb, Nc, Nd)
+    var aNum = bNum = 120
+    var leftD = false
+    rightD = false
+
+    var newsAmoveOff = false
+    var newsAstartX = 0, nowApointAx = 0
+
+    // 控制滑动菜单的位移和缩放 ---- sAndm函数
+    function sAndm(i, real, scale) {
+      aNcont[i].style.transform = 'translateX(' + real + 'px) scale(' + scale + ')'
+      aNcont[i].style.webkitTransform = 'translateX(' + real + 'px) scale(' + scale + ')'
+      aNcont[i].style.opacity = scale
+    }
+
+    // 触发
+    aNcont[Na].addEventListener(
+      'touchstart',
+      function (e) {
+        ifMove = false
+        newsAmoveOff = true
+        var touch = e.changedTouches[0]
+        newsAstartX = touch.pageX
+        e.preventDefault()
+
+      }, false)
+    // 移动
+    document.addEventListener(
+      'touchmove',
+      function (e) {
+        ifMove = true
+        if (!newsAmoveOff)return false
+        //console.log(_this)
+        // 起始第一层
+        var touch = e.changedTouches[0]
+        nowApointAx = touch.pageX - newsAstartX
+
+        if (nowApointAx > 0) {
+
+          // ********往右拖拽*********
+          var aReal = 120 + nowApointAx * 2
+          var aScale = 1 - 0.0023 * nowApointAx
+
+          // *********起始第二层*********
+          // 左侧
+          var bReal = nowApointAx * 2 - 60
+          var bScale = 0.8 + 0.0023 * nowApointAx
+
+          // 右侧
+          var baReal = 300 - nowApointAx * 2
+          var baScale = 0.8 - 0.0023 * nowApointAx
+
+          // 起始第三层
+          var cReal = 120 - nowApointAx * 2
+          var cScale = 0.6 + 0.0023 * nowApointAx
+
+          if (aReal >= 300) {
+            rightD = true
+            leftD = false
+
+            // console.log(aReal);
+            aNcont[Na].style.zIndex = '2'
+            aNcont[Nb].style.zIndex = '99'
+            aNcont[Nc].style.zIndex = '1'
+            aNcont[Nd].style.zIndex = '2'
+
+            // aNcont[2].style.transition = '.5s';
+            // aNcont[2].style.webkitTransition = '.5s';
+            // var aReal = 120 + nowApointAx;
+            // alert(1);
+            aNum += 5
+            if (aNum > 150) {
+              var aReal = 120 + nowApointAx / 4
+            } else {
+              var aReal = aNum
+            }
+
+            sAndm(Nb, aReal, 1)
+            sAndm(Na, 300, 0.8)
+            sAndm(Nd, -60, 0.8)
+            sAndm(Nc, 120, 0.6)
+            // 如果>300后还在拖
+
+          } else {
+
+            rightD = false
+            leftD = false
+            aNcont[Nb].style.zIndex = '2'
+            aNcont[Na].style.zIndex = '99'
+            aNcont[Nd].style.zIndex = '1'
+            aNcont[Nc].style.zIndex = '2'
+
+            // aNcont[2].style.transition = '0';
+            // aNcont[2].style.webkitTransition = '0';
+            sAndm(Na, aReal, aScale)
+            sAndm(Nb, bReal, bScale)
+            sAndm(Nc, baReal, baScale)
+            sAndm(Nd, cReal, cScale)
+          }
+
+        } else if (nowApointAx < 0) {
+
+          // *******往左拖拽********
+          // 起始第一层
+          // 右侧
+          var dReal = 120 + nowApointAx * 2
+          var dScale = 1 + 0.0023 * nowApointAx
+
+          // 左侧
+          var daReal = -60 - nowApointAx * 2
+          var daScale = 0.8 + 0.0023 * nowApointAx
+
+          // 起始第二层
+          var eReal = 300 + nowApointAx * 2
+          var eScale = 0.8 - 0.0023 * nowApointAx
+
+          // 起始第三层
+          var fReal = 120 - nowApointAx * 2
+          var fScale = 0.6 - 0.0023 * nowApointAx
+
+          if (dReal <= -60) {
+            // console.log(dReal);
+
+            leftD = true
+            rightD = false
+            // console.log(dReal);
+            aNcont[Na].style.zIndex = '2'
+            aNcont[Nc].style.zIndex = '99'
+            aNcont[Nb].style.zIndex = '1'
+            aNcont[Nd].style.zIndex = '2'
+
+            // aNcont[2].style.transition = '.5s';
+            // aNcont[2].style.webkitTransition = '.5s';
+            // var dReal = 120 + nowApointAx;
+            bNum -= 5
+            if (bNum < 90) {
+              var dReal = 120 + nowApointAx / 4
+            } else {
+              var dReal = bNum
+            }
+            sAndm(Nc, dReal, 1)
+            sAndm(Na, -60, 0.8)
+            sAndm(Nd, 300, 0.8)
+            sAndm(Nb, 120, 0.6)
+          } else {
+            leftD = false
+            rightD = false
+            aNcont[Nb].style.zIndex = '2'
+            aNcont[Na].style.zIndex = '99'
+            aNcont[Nd].style.zIndex = '1'
+            aNcont[Nc].style.zIndex = '2'
+
+            // aNcont[2].style.transition = '0';
+            // aNcont[2].style.webkitTransition = '0';
+            sAndm(Na, dReal, dScale)
+            sAndm(Nb, daReal, daScale)
+            sAndm(Nc, eReal, eScale)
+            sAndm(Nd, fReal, fScale)
+          }
+
+        }
+      }, false)
+
+    // 触发结束
+    aNcont[Na].addEventListener(
+      'touchend',
+      function (e) {
+        if (ifMove) {
+          sAndm(La, 120, 1)
+          sAndm(Lb, 300, 0.8)
+          sAndm(Lc, -60, 0.8)
+          sAndm(Ld, 120, 0.6)
+          aNcont[Na].style.zIndex = '99'
+          aNcont[Nc].style.zIndex = '2'
+          aNcont[Nb].style.zIndex = '2'
+          aNcont[Nd].style.zIndex = '1'
+        }
+        // console.log(leftD, rightD, Na);
+        if (leftD) {
+
+          sAndm(Nc, 120, 1)
+          sAndm(Na, -60, 0.8)
+          sAndm(Nd, 300, 0.8)
+          sAndm(Nb, 120, 0.6)
+          aNcont[Na].style.zIndex = '2'
+          aNcont[Nc].style.zIndex = '99'
+          aNcont[Nb].style.zIndex = '1'
+          aNcont[Nd].style.zIndex = '2'
+
+          if (Na == 0) {
+            La = 2
+            Lb = 0
+            Lc = 3
+            Ld = 1
+            turnToNext(2, 0, 3, 1)
+          } else if (Na == 1) {
+            La = 0
+            Lb = 1
+            Lc = 2
+            Ld = 3
+            turnToNext(0, 1, 2, 3)
+          } else if (Na == 2) {
+            La = 3
+            Lb = 2
+            Lc = 1
+            Ld = 0
+            turnToNext(3, 2, 1, 0)
+          } else if (Na == 3) {
+            La = 1
+            Lb = 3
+            Lc = 0
+            Ld = 2
+            turnToNext(1, 3, 0, 2)
+          }
+
+        } else if (rightD) {
+
+          sAndm(Nb, 120, 1)
+          sAndm(Na, 300, 0.8)
+          sAndm(Nc, 120, 0.6)
+          sAndm(Nd, -60, 0.8)
+          aNcont[Na].style.zIndex = '2'
+          aNcont[Nb].style.zIndex = '99'
+          aNcont[Nc].style.zIndex = '1'
+          aNcont[Nd].style.zIndex = '2'
+
+          console.log(Na)
+          if (Na == 0) {
+            La = 1
+            Lb = 3
+            Lc = 0
+            Ld = 2
+            turnToNext(1, 3, 0, 2)
+            console.log(1)
+          } else if (Na == 1) {
+            La = 3
+            Lb = 2
+            Lc = 1
+            Ld = 0
+            turnToNext(3, 2, 1, 0)
+            console.log(2)
+          } else if (Na == 2) {
+            La = 0
+            Lb = 1
+            Lc = 2
+            Ld = 3
+            turnToNext(0, 1, 2, 3)
+            console.log(3)
+          } else if (Na == 3) {
+            La = 2
+            Lb = 0
+            Lc = 3
+            Ld = 1
+            turnToNext(2, 0, 3, 1)
+            console.log(4)
+          }
+
+        }
+
+
+        e.stopPropagation()
+      })
+  }
+</script>
+</body>
+</html>
+
+
+
+
+

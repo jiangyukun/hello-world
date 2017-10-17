@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 100%;
+        }
+
+        #myCanvas {
+            display: block;
+            border: 1px solid #ccc;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <canvas id="myCanvas" width="1024" height="742"></canvas>
+</div>
+</body>
+<script>
+  var c = document.getElementById('myCanvas')
+  var ctx = c.getContext('2d')
+
+  function face() {
+    // 脸型
+    ctx.beginPath()
+    ctx.moveTo(270, 0)
+    ctx.lineTo(300, 427)
+    ctx.quadraticCurveTo(357, 600, 532, 728)
+    ctx.quadraticCurveTo(547, 737, 563, 728)
+    ctx.quadraticCurveTo(694, 657, 760, 555)
+    ctx.lineTo(820, 0)
+    ctx.lineTo(270, 0)
+    ctx.fillStyle = '#ffdcc9'
+    ctx.fill()
+  }
+
+  face()
+  ctx.globalCompositeOperation = 'source-over'
+
+
+  // 嘴巴
+  ctx.beginPath()
+  ctx.moveTo(487, 609)
+  ctx.quadraticCurveTo(612, 602, 623, 616)
+  ctx.stroke()
+
+
+  // 鼻子
+  ctx.beginPath()
+  ctx.moveTo(536, 528)
+  ctx.lineTo(580, 528)
+  ctx.quadraticCurveTo(593, 528, 593, 543)
+  ctx.quadraticCurveTo(586, 571, 563, 582)
+  ctx.lineTo(551, 582)
+  ctx.quadraticCurveTo(530, 571, 524, 543)
+  ctx.quadraticCurveTo(524, 528, 536, 528)
+  ctx.fillStyle = '#c7a491'
+  ctx.fill()
+
+  ctx.beginPath()
+  ctx.moveTo(528, 534)
+  ctx.quadraticCurveTo(542, 539, 551, 543)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(572, 548)
+  ctx.quadraticCurveTo(575, 538, 588, 538)
+  ctx.fillStyle = '#5a3724'
+  ctx.stroke()
+
+
+  //  左眼
+  ctx.beginPath()
+  ctx.moveTo(414, 299)
+  ctx.arc(414, 299, 14, 0, 2 * Math.PI)
+  ctx.fillStyle = '#000000'
+  ctx.fill()
+  ctx.globalCompositeOperation = 'source-atop'
+  ctx.moveTo(408, 302)
+  ctx.arc(408, 302, 36, 0, 2 * Math.PI, false)
+  ctx.fillStyle = '#172749'
+  ctx.fill()
+  ctx.globalCompositeOperation = 'source-atop'
+  ctx.moveTo(474, 339)
+  ctx.quadraticCurveTo(418, 274, 348, 293)
+  ctx.lineTo(348, 302)
+  ctx.quadraticCurveTo(389, 365, 470, 343)
+  ctx.lineTo(474, 339)
+  ctx.fillStyle = '#e7ecf2'
+  ctx.fill()
+
+  ctx.globalCompositeOperation = 'source-over'
+
+
+  ctx.beginPath()
+  ctx.moveTo(337, 295)
+  ctx.quadraticCurveTo(418, 275, 478, 343)
+  ctx.quadraticCurveTo(476, 335, 482, 335)
+  ctx.quadraticCurveTo(426, 274, 337, 285)
+  ctx.fillStyle = '#2f2e34'
+  ctx.fill()
+
+  ctx.beginPath()
+  ctx.moveTo(482, 335)
+  ctx.quadraticCurveTo(426, 274, 337, 285)
+  ctx.quadraticCurveTo(430, 217, 482, 335)
+  ctx.fillStyle = '#ffdcc9'
+  ctx.fill()
+
+  ctx.beginPath()
+  ctx.moveTo(470, 343)
+  ctx.quadraticCurveTo(389, 365, 348, 302)
+  ctx.quadraticCurveTo(386, 372, 469, 343)
+  ctx.fillStyle = '#615e4d'
+  ctx.fill()
+
+  ctx.beginPath()
+  ctx.moveTo(470, 343)
+  ctx.quadraticCurveTo(386, 364, 352, 320)
+  ctx.strokeStyle = '#615e4d'
+  ctx.stroke()
+  ctx.closePath()
+
+  // 眉毛
+
+
+  ctx.beginPath()
+  ctx.moveTo(507, 286)
+  ctx.quadraticCurveTo(480, 261, 348, 233)
+  ctx.lineTo(348, 246)
+  ctx.quadraticCurveTo(460, 261, 507, 299)
+  ctx.quadraticCurveTo(510, 292, 507, 286)
+  ctx.fillStyle = '#434446'
+  ctx.fill()
+  ctx.globalCompositeOperation = 'source-over'
+
+  var c = document.getElementById('myCanvas')
+  var ctx = c.getContext('2d')
+
+  //  右眼
+  ctx.beginPath()
+  ctx.moveTo(724, 325)
+  ctx.arc(724, 325, 14, 0, 2 * Math.PI)
+  ctx.fillStyle = '#000000'
+  ctx.fill()
+  ctx.globalCompositeOperation = 'source-atop'
+  ctx.moveTo(724, 325)
+  ctx.arc(724, 325, 36, 0, 2 * Math.PI)
+  ctx.fillStyle = '#172749'
+  ctx.fill()
+  ctx.globalCompositeOperation = 'source-atop'
+  ctx.moveTo(661, 344)
+  ctx.quadraticCurveTo(711, 287, 794, 319)
+  ctx.lineTo(794, 329)
+  ctx.quadraticCurveTo(749, 387, 666, 358)
+  ctx.lineTo(661, 344)
+  ctx.fillStyle = '#e7ecf2'
+  ctx.fill()
+
+  ctx.globalCompositeOperation = 'source-over'
+
+  // 头发
+  ctx.beginPath()
+  ctx.moveTo(180, 0)
+  ctx.quadraticCurveTo(194, 6, 198, 16)
+  ctx.moveTo(198, 16)
+  ctx.lineTo(78, 100)
+  ctx.quadraticCurveTo(137, 86, 190, 86)
+  ctx.quadraticCurveTo(197, 86, 190, 94)
+  ctx.quadraticCurveTo(160, 140, 98, 200)
+  ctx.quadraticCurveTo(222, 142, 213, 157)
+  ctx.quadraticCurveTo(190, 206, 135, 251)
+  ctx.quadraticCurveTo(168, 243, 190, 231)
+  ctx.quadraticCurveTo(151, 287, 108, 380)
+  ctx.quadraticCurveTo(155, 340, 189, 330)
+  ctx.quadraticCurveTo(170, 412, 201, 618)
+  ctx.quadraticCurveTo(208, 553, 218, 515)
+  ctx.quadraticCurveTo(218, 609, 262, 742)
+  ctx.quadraticCurveTo(303, 306, 431, 108)
+  ctx.quadraticCurveTo(400, 250, 414, 300)
+  ctx.quadraticCurveTo(442, 227, 468, 176)
+  ctx.quadraticCurveTo(479, 205, 479, 315)
+  ctx.lineTo(518, 210)
+  ctx.lineTo(505, 392)
+  ctx.quadraticCurveTo(558, 295, 585, 215)
+  ctx.lineTo(571, 381)
+  ctx.lineTo(664, 164)
+  ctx.lineTo(649, 322)
+  ctx.lineTo(727, 148)
+  ctx.lineTo(791, 427)
+  ctx.lineTo(770, 330)
+  ctx.quadraticCurveTo(757, 427, 716, 545)
+  ctx.quadraticCurveTo(751, 507, 765, 477)
+  ctx.quadraticCurveTo(756, 577, 733, 701)
+  ctx.quadraticCurveTo(802, 607, 821, 525)
+  ctx.quadraticCurveTo(826, 588, 926, 760)
+  ctx.quadraticCurveTo(890, 210, 935, 150)
+  ctx.quadraticCurveTo(957, 163, 978, 189)
+  ctx.quadraticCurveTo(954, 108, 926, 80)
+  ctx.quadraticCurveTo(978, 41, 1005, -10)
+  ctx.quadraticCurveTo(940, 16, 928, 14)
+  ctx.lineTo(928, 0)
+  ctx.lineTo(180, 0)
+  ctx.fillStyle = '#48474f'
+  ctx.fill()
+</script>
+</html>

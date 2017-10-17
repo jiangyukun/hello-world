@@ -23,7 +23,7 @@ class HelloWorld1 extends React.Component {
     return (
       <div className="hello-world-1" style={{width: '100px', border: '1px solid #aaa'}}>
         {
-          ['a', 'c', 'c'].map((item, index) => {
+          ['a1', 'b1', 'c1'].map((item, index) => {
             /*
              * 列表元素需要的key属性，用于识别元素的新增，修改，和删除
              * */

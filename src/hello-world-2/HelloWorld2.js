@@ -8,12 +8,13 @@ import React from 'react'
 class HelloWorld2 extends React.Component {
   handleBtnClick = () => {
     alert('inner button click')
+    this.inner.a()
   }
 
   render() {
     return (
       <Outer name="xx">
-        <Inner onBtnClick={this.handleBtnClick}/>
+        <Inner ref={c => this.inner = c} onBtnClick={this.handleBtnClick}/>
       </Outer>
     )
   }
@@ -33,6 +34,10 @@ class Outer extends React.Component {
 
 
 class Inner extends React.Component {
+
+  a() {
+
+  }
 
   render() {
     return (

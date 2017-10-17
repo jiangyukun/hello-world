@@ -7,6 +7,8 @@ import Select1 from './Select1'
 
 const options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(item => ({value: item, text: '项目' + item}))
 
+console.log(options);
+
 class Select1Preview extends React.Component {
   state = {
     value: ''
