@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        .container {
+            width: 500px;
+            margin: 100px auto;
+            border: 1px solid #00a854;
+
+            perspective: 1000px;
+            /*perspective-origin: 0 0;*/
+        }
+
+        .ii {
+            width: 400px;
+            /*transform: translate3d(0, 0, 500px);*/
+            transform: translate3d(100px, 100px, 0) rotateZ(30deg)
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <img class="ii" src="../images/1.jpg"/>
+</div>
+
+
+<script>
+
+  var ii = document.querySelector('.ii')
+
+  var i = 0
+  console.log(ii.style.transform)
+  setInterval(function () {
+    ii.style.transform = 'translate3d(0, 0, ' + i + 'px)'
+   i++
+  }, 16)
+
+
+</script>
+
+</body>
+</html>

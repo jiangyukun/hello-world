@@ -17,7 +17,7 @@ import HelloWorld3 from './hello-world-3/HelloWorld3'
 import Select1Preview from './select1/Select1Preview'
 
 
-let current = 4
+let current = 3
 
 
 const mapper = {
