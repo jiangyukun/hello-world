@@ -1,7 +1,7 @@
 /**
  * Created by wangji on 2017/6/4.
  */
-
+'use strict'
 function A() {
   this.x = 1
 }
